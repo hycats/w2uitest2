@@ -10,11 +10,13 @@ td.w2ui-head {
     font-family: FontAwesome;
 }
 
-//.fontawesome.bt {
-//    padding: 6;
-//    border:7;
-//    margin:0;
-//}
+/*
+.fontawesome.bt {
+    padding: 6;
+    border:7;
+    margin:0;
+}
+*/
 
 html, body {
     height:100%;
