@@ -1,7 +1,9 @@
 
 $(function () {
 
-    var config = {
+    var scope = {};
+    scope.curdate = new Date();
+    scope.config = {
         tabs: {
             name: 'tabs',
             active: 'tab_top',
@@ -18,11 +20,10 @@ $(function () {
     };
 
     // タブ設定
-    $('#tabs').w2tabs(config.tabs);
+    $('#tabs').w2tabs(scope.config.tabs);
     // 日付入力
     var input_date = $('input[type=my-date]');
-    var d = new Date();
-    var now = d.toLocaleDateString('ja-JP', { year: "numeric", month: "2-digit", day: "2-digit" });
+    var now = scope.curdate.toLocaleDateString('ja-JP', { year: "numeric", month: "2-digit", day: "2-digit" });
     input_date.w2field('date', {format: 'yyyy/mm/dd'}).val(now);
 });
 /*
