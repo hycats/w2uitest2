@@ -24,7 +24,9 @@ $(function () {
     // 日付入力
     var input_date = $('input[type=my-date]');
     var now = scope.curdate.toLocaleDateString('ja-JP', { year: "numeric", month: "2-digit", day: "2-digit" });
-    input_date.w2field('date', {format: 'yyyy/mm/dd'}).val(now);
+    input_date.w2field('date', {format: 'yyyy/mm/dd'}).val(now).change(function(e){
+        scope.curdate.setTime(Date.parse($(this).val()));
+    });
 });
 /*
 var mymodule = angular.module('myApp', ['ngSanitize']);
