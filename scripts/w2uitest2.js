@@ -1,20 +1,29 @@
 
 $(function () {
 
-    $('#tabs').w2tabs({
-        name: 'tabs',
-        active: 'tab_top',
-        tabs: [
-            { id: 'tab_top', text: '<i class="fa fa-home fa-lg"></i>' },
-            { id: 'tab_kakeibo', text: '<i class="fa fa-table fa-lg"></i>' },
-            { id: 'tab_graph', text: '<i class="fa fa-line-chart fa-lg"></i>' },
-            { id: 'tab_setting', text: '<i class="fa fa-cog fa-fw fa-lg"></i>' }
-        ],
-        onClick: function(event) {
-            console.log(`ok ${event.target}`);
+    var config = {
+        tabs: {
+            name: 'tabs',
+            active: 'tab_top',
+            tabs: [
+                { id: 'tab_top', text: '<i class="fa fa-home fa-lg"></i>' },
+                { id: 'tab_kakeibo', text: '<i class="fa fa-table fa-lg"></i>' },
+                { id: 'tab_graph', text: '<i class="fa fa-line-chart fa-lg"></i>' },
+                { id: 'tab_setting', text: '<i class="fa fa-cog fa-fw fa-lg"></i>' }
+            ],
+            onClick: function (event) {
+                console.log(`ok ${event.target}`);
+            }
         }
-    });
+    };
 
+    // タブ設定
+    $('#tabs').w2tabs(config.tabs);
+    // 日付入力
+    var input_date = $('input[type=my-date]');
+    var d = new Date();
+    var now = d.toLocaleDateString('ja-JP', { year: "numeric", month: "2-digit", day: "2-digit" });
+    input_date.w2field('date', {format: 'yyyy/mm/dd'}).val(now);
 });
 /*
 var mymodule = angular.module('myApp', ['ngSanitize']);
