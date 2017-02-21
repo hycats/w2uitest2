@@ -1,5 +1,5 @@
 
-$(function () {
+jQuery(function ($) {
 
     var scope = {};
     scope.curdate = new Date();
