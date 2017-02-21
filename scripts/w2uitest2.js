@@ -3,6 +3,8 @@ $(function () {
 
     var scope = {};
     scope.curdate = new Date();
+    scope.curdate.setHours(0,0,0,0);
+    console.log('now:' + scope.curdate);
     scope.config = {
         tabs: {
             name: 'tabs',
@@ -25,7 +27,9 @@ $(function () {
     var input_date = $('input[type=my-date]');
     var now = scope.curdate.toLocaleDateString('ja-JP', { year: "numeric", month: "2-digit", day: "2-digit" });
     input_date.w2field('date', {format: 'yyyy/mm/dd'}).val(now).change(function(e){
-        scope.curdate.setTime(Date.parse($(this).val()));
+        scope.curdate.setFullYear( $(this).val().substr(0,4) );
+        scope.curdate.setMonth( $(this).val().substr(5,2)-1, $(this).val().substr(8,2) );
+        scope.curdate.setHours(0,0,0,0);
     });
 });
 /*
