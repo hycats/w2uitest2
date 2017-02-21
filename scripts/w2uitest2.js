@@ -31,6 +31,13 @@ jQuery(function ($) {
         scope.curdate.setMonth( $(this).val().substr(5,2)-1, $(this).val().substr(8,2) );
         scope.curdate.setHours(0,0,0,0);
     });
+    // 日付変更ボタン
+    $('button[type="my-date"]').click(function(){
+        var offset = ( $(this).attr('id') === 'btn-l' ) ? -1 : 1;
+        scope.curdate.setDate(scope.curdate.getDate() + offset);
+        var now = scope.curdate.toLocaleDateString('ja-JP', { year: "numeric", month: "2-digit", day: "2-digit" });
+        $('input[type=my-date]').val(now);
+    })
 });
 /*
 var mymodule = angular.module('myApp', ['ngSanitize']);
