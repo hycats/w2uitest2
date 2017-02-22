@@ -10,13 +10,25 @@ jQuery(function ($) {
             name: 'tabs',
             active: 'tab_top',
             tabs: [
-                { id: 'tab_top', text: '<i class="fa fa-home fa-lg"></i>' },
-                { id: 'tab_kakeibo', text: '<i class="fa fa-table fa-lg"></i>' },
-                { id: 'tab_graph', text: '<i class="fa fa-line-chart fa-lg"></i>' },
-                { id: 'tab_setting', text: '<i class="fa fa-cog fa-fw fa-lg"></i>' }
+                { id: 'tab_top', text: '<i class="fa fa-home fa-lg"></i>', my_tab_panel: '#tab-panel-top' },
+                { id: 'tab_kakeibo', text: '<i class="fa fa-table fa-lg"></i>', my_tab_panel: '#tab-panel-kakeibo' },
+                { id: 'tab_graph', text: '<i class="fa fa-line-chart fa-lg"></i>', my_tab_panel: '#tab-panel-graph' },
+                { id: 'tab_setting', text: '<i class="fa fa-cog fa-fw fa-lg"></i>', my_tab_panel: '#tab-panel-setting' }
             ],
             onClick: function (event) {
-                console.log(`ok ${event.target}`);
+                //console.log(`ok ${event.target}`);
+                var panel_id = event.tab.my_tab_panel;
+                var p, t;
+                for (var i = 0, len = this.tabs.length; i < len; ++i) {
+                    t = this.tabs[i].my_tab_panel;
+                    p = $(t);
+                    if (panel_id == t) {
+                        p.show();
+                    }
+                    else {
+                        p.hide();
+                    }
+                }
             }
         },
         grid_top: {
