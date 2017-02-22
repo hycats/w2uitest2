@@ -54,7 +54,7 @@ jQuery(function ($) {
     // タブ設定
     $('#tabs').w2tabs(scope.config.tabs);
     // 日付入力
-    var input_date = $('input[type=my-date]');
+    var input_date = $('#top_date');
     var now = scope.curdate.toLocaleDateString('ja-JP', { year: "numeric", month: "2-digit", day: "2-digit" });
     input_date.w2field('date', { format: 'yyyy/mm/dd' }).val(now).change(function (e) {
         scope.curdate.setFullYear($(this).val().substr(0, 4));
@@ -66,7 +66,7 @@ jQuery(function ($) {
         var offset = ($(this).attr('id') === 'btn-l') ? -1 : 1;
         scope.curdate.setDate(scope.curdate.getDate() + offset);
         var now = scope.curdate.toLocaleDateString('ja-JP', { year: "numeric", month: "2-digit", day: "2-digit" });
-        $('input[type=my-date]').val(now);
+        $('#top_date').val(now);
     });
     // Top グリッド
     var top_grid = $('#top_grid');
