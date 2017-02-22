@@ -24,6 +24,7 @@ jQuery(function ($) {
                     p = $(t);
                     if (panel_id == t) {
                         p.show();
+                        w2ui.grid.refresh(t);
                     }
                     else {
                         p.hide();
