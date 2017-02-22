@@ -3,7 +3,7 @@ jQuery(function ($) {
 
     var scope = {};
     scope.curdate = new Date();
-    scope.curdate.setHours(0,0,0,0);
+    scope.curdate.setHours(0, 0, 0, 0);
     console.log('now:' + scope.curdate);
     scope.config = {
         tabs: {
@@ -18,6 +18,36 @@ jQuery(function ($) {
             onClick: function (event) {
                 console.log(`ok ${event.target}`);
             }
+        },
+        grid_top: {
+            name: 'grid',
+            header: 'List of Names',
+            //multiSearch: true,
+            show: {
+                toolbar: true,
+                footer: true,
+                toolbarReload: false,
+                toolbarColumns: false
+                //toolbarSearch: true
+            },
+            searches: [
+                { field: 'sdate', caption: 'date', type: 'date' }
+            ],
+            columns: [
+                { field: 'sdate', caption: '日付', size: '80px', render: 'date:yyyy/mm/dd', editable: { type: 'date' } },
+                { field: 'fname', caption: '費目', size: '10%' },
+                { field: 'lname', caption: '内訳', size: '10%' },
+                { field: 'product', caption: '品名', size: '10%' },
+                { field: 'check', caption: '済', editable: { type: 'checkbox' }, size: '30px' },
+                { field: 'income', caption: '収入', render: 'int', editable: { type: 'int' }, size: '10%' },
+                { field: 'outgo', caption: '支出', render: 'int', editable: { type: 'int' }, size: '10%' },
+                { field: 'balance', caption: '残高', render: 'int', editable: { type: 'int' }, size: '10%' },
+                { field: 'email', caption: '備考', size: '30%' },
+            ],
+            records: [
+                { recid: 1, sdate: "01/12/2017", fname: "Peter", lname: "Jeremia", income: 1000 },
+                { recid: 2, fname: "Bruce", lname: "Wilkerson" }
+            ]
         }
     };
 
@@ -26,18 +56,21 @@ jQuery(function ($) {
     // 日付入力
     var input_date = $('input[type=my-date]');
     var now = scope.curdate.toLocaleDateString('ja-JP', { year: "numeric", month: "2-digit", day: "2-digit" });
-    input_date.w2field('date', {format: 'yyyy/mm/dd'}).val(now).change(function(e){
-        scope.curdate.setFullYear( $(this).val().substr(0,4) );
-        scope.curdate.setMonth( $(this).val().substr(5,2)-1, $(this).val().substr(8,2) );
-        scope.curdate.setHours(0,0,0,0);
+    input_date.w2field('date', { format: 'yyyy/mm/dd' }).val(now).change(function (e) {
+        scope.curdate.setFullYear($(this).val().substr(0, 4));
+        scope.curdate.setMonth($(this).val().substr(5, 2) - 1, $(this).val().substr(8, 2));
+        scope.curdate.setHours(0, 0, 0, 0);
     });
     // 日付変更ボタン
-    $('button[type="my-date"]').click(function(){
-        var offset = ( $(this).attr('id') === 'btn-l' ) ? -1 : 1;
+    $('button[type="my-date"]').click(function () {
+        var offset = ($(this).attr('id') === 'btn-l') ? -1 : 1;
         scope.curdate.setDate(scope.curdate.getDate() + offset);
         var now = scope.curdate.toLocaleDateString('ja-JP', { year: "numeric", month: "2-digit", day: "2-digit" });
         $('input[type=my-date]').val(now);
-    })
+    });
+    // Top グリッド
+    var top_grid = $('#top_grid');
+    top_grid.w2grid(scope.config[top_grid.attr('config')]);
 });
 /*
 var mymodule = angular.module('myApp', ['ngSanitize']);
