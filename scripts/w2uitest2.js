@@ -19,11 +19,19 @@ jQuery(function ($) {
                 //console.log(`ok ${event.target}`);
                 $('#tab-panel .tab_panel').hide();
                 $('#tab-panel '+event.tab.my_tab_panel).show();
-                w2ui.grid.refresh();
+                w2ui.layout_top.refresh();
             }
         },
+        layout_top: {
+            name: 'layout_top',
+            padding: 4,
+            panels: [
+                { type: 'main', content: 'main' },
+                { type: 'right', size: '20%', content: 'right' }
+            ]
+        },
         grid_top: {
-            name: 'grid',
+            name: 'grid_top',
             header: 'List of Names',
             //multiSearch: true,
             show: {
@@ -72,8 +80,8 @@ jQuery(function ($) {
         $('#top_date').val(now);
     });
     // Top グリッド
-    var top_grid = $('#top_grid');
-    top_grid.w2grid(scope.config[top_grid.attr('config')]);
+    $('#top_layout').w2layout(scope.config.layout_top);
+    w2ui.layout_top.content('main', $().w2grid(scope.config.grid_top));
 });
 /*
 var mymodule = angular.module('myApp', ['ngSanitize']);
