@@ -17,19 +17,9 @@ jQuery(function ($) {
             ],
             onClick: function (event) {
                 //console.log(`ok ${event.target}`);
-                var panel_id = event.tab.my_tab_panel;
-                var p, t;
-                for (var i = 0, len = this.tabs.length; i < len; ++i) {
-                    t = this.tabs[i].my_tab_panel;
-                    p = $(t);
-                    if (panel_id == t) {
-                        p.show();
-                        w2ui.grid.refresh(t);
-                    }
-                    else {
-                        p.hide();
-                    }
-                }
+                $('#tab-panel .tab_panel').hide();
+                $('#tab-panel '+event.tab.my_tab_panel).show();
+                w2ui.grid.refresh();
             }
         },
         grid_top: {
