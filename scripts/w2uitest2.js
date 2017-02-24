@@ -82,6 +82,15 @@ jQuery(function ($) {
     // Top グリッド
     $('#top_layout').w2layout(scope.config.layout_top);
     w2ui.layout_top.content('main', $().w2grid(scope.config.grid_top));
+    
+    // 家計簿グリッド
+    $('#kakeibo_tbl').handsontable({
+        data: [  [ '1','2','3', '4'],[ '1','2','3', '4'],[]],
+        colHeaders: [ 'D1', 'D2', 'D3', 'D4'],
+        rowHeaders: [ '食費', '酒・たばこ', '生活用品'],
+        rowHeaderWidth: 150,
+        readOnly: true
+    });
 });
 /*
 var mymodule = angular.module('myApp', ['ngSanitize']);
